@@ -3,7 +3,7 @@ from prettytable import PrettyTable
 
 
 m = int(input("Введіть розмір двовимірного списку від 5-ти включно: "))
-matrix = [[random.randrange(0,50) for y in range(m)] for x in range(m)]#Створили матрицю
+matrix = [[random.randrange(0,51) for y in range(m)] for x in range(m)]#Створили матрицю
 help_list = [0]*m
 for i in range(0, m):#Підраховуємо суму стовпців для подальшого перетворення
     for j in range(0, m):
