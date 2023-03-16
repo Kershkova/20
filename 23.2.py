@@ -25,10 +25,10 @@ class Counter:
 
 
     def print_f(self):
-        print(f"Поточне значення лічильника: {self.current}")
         return (self.current)
 
 
 my_class = Counter(min, max)
 my_class.current_f()
 my_class.print_f()
+print('Поточне значення лічильника: ', my_class.print_f())
