@@ -1,29 +1,35 @@
-# class Group():
-#     def __init__(self,name, students = []):
-#         self.__name = name
-#         self.__students = students
-#
-#     def get_name(self):
-#         return self.__name
-#
-#     def get_students(self):
-#         return self.__students
-#
-#     def add_students(self, x : list):
-#         self.__students = x
-#         return self.__students
-#
-#     # def get_student(self, x):
-#     #     return self.get_students[x]
-#     #
-#     # def get_name(self):
-#     #     return self.__name
+class Group():
+    def __init__(self, name, students = None):
+        self.__name = name
+        self.__students = students or []
+
+    def get_name(self):
+        return self.__name
+
+    def get_students(self):
+        return self.__students
+
+    def add_students(self, other):
+        self.__students += other
+        return self.__students
+
+    def get_student(self, x):
+        return self.__students[x]
+
+    def __repr__(self):
+        return f"{self.__name}, {self.__students} "
+
+    def del_students(self, x : list):
+        for s in x:
+            self.__students.remove(s)
+        return self.__students
+
 
 class Student:
-    def __init__(self,name, surname, grades = []):
+    def __init__(self,name, surname, grades = None):
         self.__name = name
         self.__surname = surname
-        self.__grades = grades
+        self.__grades = grades or []
 
     def get_name(self):
         return self.__name
@@ -43,37 +49,6 @@ class Student:
 
     def __repr__(self):
         return f"{self.__name}, {self.__surname}, {self.__grades}"
-
-
-class Group(Student):
-    def __init__(self, name, students = []):
-        self.__name = name
-        self.__students = students
-        print(self.__students)
-
-    def get_name(self):
-        return self.__name
-
-    def get_students(self):
-        return self.__students
-
-    def add_students(self, other):
-        print(self.__students)
-        self.__students += other
-        print(self.__students)
-        print(len(self.__students))
-        return self.__students
-
-    def get_student(self, x):
-        return self.__students[x]
-
-    def __repr__(self):
-        return f"{self.__name}"
-
-    def del_students(self, x : list):
-        self.__students.remove(x)
-        return self.__students
-
 
 
 if __name__ == "__main__":
@@ -139,25 +114,22 @@ if __name__ == "__main__":
     assert getattr(group, "name", None) is None
 
     group.add_students([student_1, student_2, student_3])
-    print(len(group.get_students()))
     assert len(group.get_students()) == 3
     assert group.get_student(0).get_name() == student_1.get_name()
     assert getattr(group, "students", None) is None
 
-    # print(group)
-
-    # # group.del_students([student_1])
-    # print(group)
+    print(group)
+    print()
+    
+    group.del_students([student_1])
+    print(group)
     print()
 
     group_2 = Group("#2")
     assert group_2.get_name() == "#2"
     assert getattr(group_2, "name", None) is None
 
-    print(len(group_2.get_students()))
-
     group_2.add_students([student_3])
-    print(len(group_2.get_students()))
     assert len(group_2.get_students()) == 1
     assert group_2.get_student(0).get_name() == student_3.get_name()
     assert getattr(group_2, "students", None) is None
